@@ -37,7 +37,11 @@ function Get-GoZipUrl($web_client){
 function Get-CurrentGoVersion(){
     $go_exe_path = (where.exe go)
     if ($go_exe_path -eq "") {
-        return $null
+        return @{
+            version_number = "00000"
+            goroot="C:\go"
+            version_word="0.0.0"
+        }
     }
     $last_go_version = (( go version ) -split " ")[2]
     $go_bin = (Split-Path -Parent $go_exe_path)
